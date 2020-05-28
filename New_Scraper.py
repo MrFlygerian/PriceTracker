@@ -21,5 +21,3 @@ price = soup.find(id = price_lookup).get_text()
 driver.quit()
 print(title, price)
 
-
-print('Scraped')
