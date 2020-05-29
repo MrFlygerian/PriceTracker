@@ -5,11 +5,11 @@ import scrapy
 class AliexpressTabletsSpider(scrapy.Spider):
     name = 'aliexpress_tablets'
     allowed_domains = ['aliexpress.com']
-    start_urls = ['https://www.aliexpress.com/category/200216621/tablets.html',
-                  'https://www.aliexpress.com/category/200216607/tablets/2.html?site=glo&g=y&tag=']
+    start_urls = ['https://www.aliexpress.com/category/200216607/tablets.html',
+                 'https://www.aliexpress.com/category/200216607/tablets/2.html?site=glo&g=y&tag=']
+
 
     def parse(self, response):
-        pass
 
         print("procesing:"+response.url)
         #Extract data using css selectors
@@ -25,12 +25,13 @@ class AliexpressTabletsSpider(scrapy.Spider):
         for item in row_data:
             #create a dictionary to store the scraped info
             scraped_info = {
-                    #key:value
+                #key:value
                 'page':response.url,
                 'product_name' : item[0], #item[0] means product in the list and so on, index tells what value to assign
                 'price_range' : item[1],
                 'orders' : item[2],
                 'company_name' : item[3],
             }
+
             #yield or give the scraped info to scrapy
             yield scraped_info
