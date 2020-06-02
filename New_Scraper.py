@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import html5lib
 from selenium import webdriver
 URL = 'https://www.amazon.co.uk/LG-Electronics-32LM630BPLA-AEK-32-Inch-Freeview/dp/B07RT5FJL8/ref=psdc_560864_t1_B07ZQK89GJ'
 

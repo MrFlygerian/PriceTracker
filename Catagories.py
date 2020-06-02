@@ -18,8 +18,8 @@ soup = BeautifulSoup(driver.page_source, 'html.parser')
 
 links = [link.get('href') for link in soup.find_all('a') if link.get('href') != None and link.get('href').startswith('/')]
 page_links = [f'https://www.amazon.com{link}' for link in links]
-print(page_links)
-
+#print(page_links)
+     
 
 
 def scrape_prod_page(URL, title_lookup = 'productTitle', price_lookup = 'priceblock_ourprice'):
