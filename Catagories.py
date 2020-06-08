@@ -16,10 +16,10 @@ catagories = ['https://www.amazon.co.uk/s?rh=n%3A468292%2Cp_72%3A4-&pf_rd_i=4682
 driver.get(catagories[0])
 soup = BeautifulSoup(driver.page_source, 'html.parser')
 
-links = [link.get('href') for link in soup.find_all('a') if link.get('href') != None and link.get('href').startswith('/')]
+links = [link.get('href') for link in soup.find_all('a') if link.get('href') is not None and link.get('href').startswith('/')]
 page_links = [f'https://www.amazon.com{link}' for link in links]
-#print(page_links)
-     
+print(page_links)
+
 
 
 def scrape_prod_page(URL, title_lookup = 'productTitle', price_lookup = 'priceblock_ourprice'):
