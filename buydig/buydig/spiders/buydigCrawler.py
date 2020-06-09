@@ -9,6 +9,7 @@ class BuydigcrawlerSpider(scrapy.Spider):
     name = 'buydigCrawler'
     allowed_domains = ['buydig.com']
     start_urls = ['https://www.buydig.com/shop/list/category/2142/Action-Cameras/']
+    custom_settings= dict(FEED_URI="buydig_%(time)s.csv", FEED_FORMAT='csv')
 
     def parse(self, response):
         print ('processing ' + response.url)
@@ -31,3 +32,10 @@ class BuydigcrawlerSpider(scrapy.Spider):
 
             # yield or give the scraped info to scrapy
             yield scraped_info
+
+            NEXT_PAGE_SELECTOR = '.p-search__main__widgets__pagination a::attr(href)'
+            next_page = response.css(NEXT_PAGE_SELECTOR).extract_first()
+            if next_page:
+                yield scrapy.Request(
+                response.urljoin(next_page),
+                callback=self.parse)
